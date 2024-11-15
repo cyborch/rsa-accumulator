@@ -1,8 +1,8 @@
 package org.starcoin.rsa;
 
-import kotlin.random.Random;
-import org.junit.Assert;
+import java.util.Random;
 import org.junit.Test;
+import org.junit.Assert;
 
 import java.math.BigInteger;
 
@@ -11,7 +11,9 @@ public class RSAJavaTest {
     @Test
     public void testRSAAccumulator() {
         RSAAccumulator accumulator = new RSAAccumulator();
-        BigInteger x0 = new BigInteger(Random.Default.nextBytes(128));
+        byte[] bytes = new byte[120];
+        new Random().nextBytes(bytes);
+        BigInteger x0 = new BigInteger(bytes);
         BigInteger commit1 = accumulator.add(x0);
         TwoValue<BigInteger> proof0 = accumulator.proveMembership(x0);
 
